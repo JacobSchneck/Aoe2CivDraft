@@ -1,0 +1,29 @@
+body {
+    font: 14px "Century Gothic", Futura, sans-serif;
+    margin: 20px;
+  }
+
+  .civ-board-row:after {
+      clear: both;
+      content: "";
+      display: table;
+  }
+
+    .civ-button {
+    background: #fff;
+    border: 1px solid #999;
+    float: left;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 34px;
+    height: 44px;
+    margin-right: -1px;
+    margin-top: -1px;
+    padding: 0;
+    text-align: center;
+    width: 100px;
+  }
+  
+  .civ-button:focus {
+    outline: none;
+  }
