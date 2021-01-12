@@ -8,6 +8,14 @@ const CIVS = ['Aztecs', 'Berbers', 'Britons', 'Bulgarians', 'Burmese', 'Byzaynti
         'Malay', 'Malians', 'Mayans', 'Mongols', 'Persians', 'Portuguese', 'Saracens', 
         'Slavs', 'Spanish', 'Tatars', 'Teutons', 'Turks', 'Vietnamese', 'Vikings']; 
 
+
+function removeElement(arr, elem) {
+    let index = arr.indexOf(elem);
+    if (index > -1) {
+        arr.splice(index, 1)
+    }
+}
+
 function CivBoardButton(props) {
     let buttonState = props.value ? "on-button" : "off-button";
     return (
@@ -23,15 +31,23 @@ class CivBoard extends React.Component {
         this.state = {
             civButtons: Array(CIVS.length).fill(false),
             labels: CIVS, 
-            draftList: null,
+            draftList: [],
         };
     }
 
     handleClick(i) {
         const civButtons = this.state.civButtons.slice();
         civButtons[i] = this.state.civButtons[i] ? false : true;
+
+        let temp = this.state.draftList.slice();
+        civButtons[i] ? temp.push(this.state.labels[i]) : removeElement(temp, this.state.labels[i]);
+        const draftList = temp.slice();
+
+        console.log(draftList);
+        // console.log(draftList);  
         this.setState({
             civButtons: civButtons,
+            draftList: draftList,
         });
     }
 
@@ -100,6 +116,7 @@ class CivBoard extends React.Component {
                 {/* Draft Board */}
                 <div className="draft-board">
                     <b> Draft Board</b> 
+                    <ol>{this.state.draftList}</ol>
                 </div>
 
             </div>
@@ -107,15 +124,5 @@ class CivBoard extends React.Component {
     }
 }
 
-// class DraftBoard extends React.Component { 
-
-//     render() {
-//         return (
-//             <div className="draft-board">
-//                 <b> Draft Board</b>
-//             </div>
-//         )
-//     }
-// }
 
 ReactDOM.render(<CivBoard />, document.getElementById('root'));
