@@ -9,21 +9,56 @@ body {
       display: table;
   }
 
-    .civ-button {
-    background: #fff;
-    border: 1px solid #999;
-    float: left;
-    font-size: 12px;
-    font-weight: bold;
-    line-height: 34px;
-    height: 44px;
-    margin-right: -1px;
-    margin-top: -1px;
-    padding: 0;
-    text-align: center;
-    width: 100px;
+   .off-button {
+      background: tan;
+      border: 1px solid #999;
+      float: left;
+      font-size: 12px;
+      font-weight: bold;  
+      line-height: 34px;
+      height: 44px;
+      margin-right: -1px;  
+      margin-top: -1px;
+      padding: 0;
+      text-align: center;
+      width: 100px;
   }
   
-  .civ-button:focus {
+   .on-button {
+      background: grey ;
+      border: 1px solid #999;
+      float: left;
+      font-size: 12px;
+      font-weight: bold;  
+      line-height: 34px;
+      height: 44px;
+      margin-right: -1px;  
+      margin-top: -1px;
+      padding: 0;
+      text-align: center;
+      width: 100px;
+  }
+
+  .off-button:focus {
     outline: none;
+  }
+
+  .on-button:focus {
+    outline: none;
+  }
+
+  .board:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  .draft-board {
+    float: right;
+    width: 40%;
+  }
+
+  .civ-board {
+    float: left;
+    width: 60%;
   }
