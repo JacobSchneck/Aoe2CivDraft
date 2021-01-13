@@ -8,7 +8,7 @@ const CIVS = ['Aztecs', 'Berbers', 'Britons', 'Bulgarians', 'Burmese', 'Byzaynti
         'Malay', 'Malians', 'Mayans', 'Mongols', 'Persians', 'Portuguese', 'Saracens', 
         'Slavs', 'Spanish', 'Tatars', 'Teutons', 'Turks', 'Vietnamese', 'Vikings']; 
 
-
+// Remove element from array function (used in draftList)
 function removeElement(arr, elem) {
     let index = arr.indexOf(elem);
     if (index > -1) {
@@ -16,10 +16,20 @@ function removeElement(arr, elem) {
     }
 }
 
+// Function to create Civ Board Buttons with properties
 function CivBoardButton(props) {
     let buttonState = props.value ? "on-button" : "off-button";
     return (
         <button className={buttonState} onClick={props.onClick}>
+            {props.name}
+        </button>
+    )
+}
+
+// Function to create Draft Board Buttons with properties 
+function DraftBoardButton(props) {
+    return (
+        <button className="draft-button" onClick={props.onClick}>
             {props.name}
         </button>
     )
@@ -35,28 +45,64 @@ class CivBoard extends React.Component {
         };
     }
 
-    handleClick(i) {
-        const civButtons = this.state.civButtons.slice();
+    handleCivClick(i) {
+        // decide button boolean value
+        let civButtons = this.state.civButtons.slice();
         civButtons[i] = this.state.civButtons[i] ? false : true;
 
+        // add civ to draft board
         let temp = this.state.draftList.slice();
         civButtons[i] ? temp.push(this.state.labels[i]) : removeElement(temp, this.state.labels[i]);
         const draftList = temp.slice();
 
-        console.log(draftList);
-        // console.log(draftList);  
+        // update state
         this.setState({
             civButtons: civButtons,
             draftList: draftList,
         });
     }
 
+    handleDraftClick(i) {
+        // updating the Civ Board buttos so that they have correct boolean value
+        let civButtons = this.state.civButtons.slice();
+        let name = this.state.draftList[i];
+        let index = this.state.labels.indexOf(name);
+        civButtons[index] = this.state.civButtons[index] ? false : true;
+        
+        // removing civ from draft board upon click
+        let temp = this.state.draftList.slice();
+        removeElement(temp,this.state.draftList[i]);
+        const draftList = temp.slice();
+
+        // update state
+        this.setState({
+            civButtons: civButtons, 
+            draftList: draftList,
+        });
+    }
+    
+    renderDraftBoardButton(i) {
+        // don't render buttons with larger index value than draftList
+        if (i > this.state.draftList.length - 1) {
+            return;
+        }
+
+        // create button and pass Civ name and click method
+        return (
+            <DraftBoardButton
+                name={this.state.draftList[i]}
+                onClick = {() => this.handleDraftClick(i)}
+            />
+        )
+    }
+
     renderCivBoardButton(i) {  
+        // pass bool value, civ name and onClick method to CivBoardButtons
         return (
             <CivBoardButton
             value={this.state.civButtons[i]}
             name={this.state.labels[i]}  
-            onClick = {() => this.handleClick(i)}
+            onClick = {() => this.handleCivClick(i)}
             />
         );
     }
@@ -90,7 +136,7 @@ class CivBoard extends React.Component {
                         {this.renderCivBoardButton(16)}
                         {this.renderCivBoardButton(17)}
                         {this.renderCivBoardButton(18)}
-                        {this.renderCivBoardButton(19)}
+                        {this.renderCivBoardButton(19)}  
                         {this.renderCivBoardButton(20)}
                     </div>
                     <div className="civ-board-row">
@@ -113,10 +159,54 @@ class CivBoard extends React.Component {
                     </div>
                 </div>
                 
-                {/* Draft Board */}
                 <div className="draft-board">
+                    {/* Draft Board */}
                     <b> Draft Board</b> 
-                    <ol>{this.state.draftList}</ol>
+                    <div className="draft-board-row"> 
+                    {this.renderDraftBoardButton(0)}
+                    {this.renderDraftBoardButton(1)}
+                    {this.renderDraftBoardButton(2)}
+                    {this.renderDraftBoardButton(3)}
+                    {this.renderDraftBoardButton(4)}
+                    {this.renderDraftBoardButton(5)}
+                    {this.renderDraftBoardButton(6)}
+                    </div>
+                    <div className="draft-board-row"> 
+                    {this.renderDraftBoardButton(7)}
+                    {this.renderDraftBoardButton(8)}
+                    {this.renderDraftBoardButton(9)}
+                    {this.renderDraftBoardButton(10)}
+                    {this.renderDraftBoardButton(11)}
+                    {this.renderDraftBoardButton(12)}
+                    {this.renderDraftBoardButton(13)}
+                    </div>
+                    <div className="draft-board-row"> 
+                    {this.renderDraftBoardButton(14)}
+                    {this.renderDraftBoardButton(15)}
+                    {this.renderDraftBoardButton(16)}
+                    {this.renderDraftBoardButton(17)}
+                    {this.renderDraftBoardButton(18)}
+                    {this.renderDraftBoardButton(19)}
+                    {this.renderDraftBoardButton(20)}
+                    </div>
+                    <div className="draft-board-row"> 
+                    {this.renderDraftBoardButton(21)}
+                    {this.renderDraftBoardButton(22)}
+                    {this.renderDraftBoardButton(23)}
+                    {this.renderDraftBoardButton(24)}
+                    {this.renderDraftBoardButton(25)}
+                    {this.renderDraftBoardButton(26)}
+                    {this.renderDraftBoardButton(27)}
+                    </div>
+                    <div className="draft-board-row"> 
+                    {this.renderDraftBoardButton(28)}
+                    {this.renderDraftBoardButton(29)}
+                    {this.renderDraftBoardButton(30)}
+                    {this.renderDraftBoardButton(31)}
+                    {this.renderDraftBoardButton(32)}
+                    {this.renderDraftBoardButton(33)}
+                    {this.renderDraftBoardButton(34)}
+                    </div>
                 </div>
 
             </div>

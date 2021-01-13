@@ -9,6 +9,27 @@ body {
       display: table;
   }
 
+  .draft-board-row:after {
+      clear: both;
+      content: "";
+      display: table;
+  }
+
+   .draft-button {
+      background: tan;
+      border: 1px solid #999;
+      float: left;
+      font-size: 12px;
+      font-weight: bold;  
+      line-height: 34px;
+      height: 44px;
+      margin-right: -1px;  
+      margin-top: -1px;
+      padding: 0;
+      text-align: center;
+      width: 90px;
+  }
+  
    .off-button {
       background: tan;
       border: 1px solid #999;
@@ -21,7 +42,7 @@ body {
       margin-top: -1px;
       padding: 0;
       text-align: center;
-      width: 100px;
+      width: 90px;
   }
   
    .on-button {
@@ -36,7 +57,7 @@ body {
       margin-top: -1px;
       padding: 0;
       text-align: center;
-      width: 100px;
+      width: 90px;
   }
 
   .off-button:focus {
@@ -55,10 +76,10 @@ body {
 
   .draft-board {
     float: right;
-    width: 40%;
+    width: 50%;
   }
 
   .civ-board {
     float: left;
-    width: 60%;
+    width: 50%;
   }
