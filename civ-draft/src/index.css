@@ -60,6 +60,21 @@ body {
       width: 90px;
   }
 
+   .pick-civ-button {
+      background: tan ;
+      border: 1px solid #999;
+      float: left;
+      font-size: 12px;
+      font-weight: bold;  
+      line-height: 34px;
+      height: 44px;
+      margin-right: -1px;  
+      margin-top: -1px;
+      padding: 0;
+      text-align: center;
+      width: 220px;
+  }
+
   .off-button:focus {
     outline: none;
   }
@@ -79,7 +94,14 @@ body {
     width: 50%;
   }
 
-  .civ-board {
+  .civ-board {  
     float: left;
-    width: 50%;
+    width: 50%;  
+  }
+
+  .pick-board {
+    position: fixed;
+    top: 75%;
+    left: 48%;
+    transform: translate(-50%, -50%)
   }

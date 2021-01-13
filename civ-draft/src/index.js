@@ -16,6 +16,11 @@ function removeElement(arr, elem) {
     }
 }
 
+// Get a random integer from 0 to n
+function getRandInt(n) { 
+    return Math.floor(Math.random() * Math.floor(n));
+}
+
 // Function to create Civ Board Buttons with properties
 function CivBoardButton(props) {
     let buttonState = props.value ? "on-button" : "off-button";
@@ -35,6 +40,14 @@ function DraftBoardButton(props) {
     )
 }
 
+function PickCivButton(props) {
+    return (
+        <button className="pick-civ-button" onClick={props.onClick}>
+            {props.name}
+        </button>
+    )
+}
+
 class CivBoard extends React.Component {
     constructor(props) {
         super(props);
@@ -42,6 +55,7 @@ class CivBoard extends React.Component {
             civButtons: Array(CIVS.length).fill(false),
             labels: CIVS, 
             draftList: [],
+            civPick: "Click to Generate a Random Civ",
         };
     }
 
@@ -79,6 +93,14 @@ class CivBoard extends React.Component {
             civButtons: civButtons, 
             draftList: draftList,
         });
+    }
+
+    handleCivPickClick() {
+        let randCivIndex = getRandInt(this.state.draftList.length);
+        let newCivPick = this.state.draftList[randCivIndex];
+        this.setState({
+            civPick: newCivPick,
+        })
     }
     
     renderDraftBoardButton(i) {
@@ -163,52 +185,58 @@ class CivBoard extends React.Component {
                     {/* Draft Board */}
                     <b> Draft Board</b> 
                     <div className="draft-board-row"> 
-                    {this.renderDraftBoardButton(0)}
-                    {this.renderDraftBoardButton(1)}
-                    {this.renderDraftBoardButton(2)}
-                    {this.renderDraftBoardButton(3)}
-                    {this.renderDraftBoardButton(4)}
-                    {this.renderDraftBoardButton(5)}
-                    {this.renderDraftBoardButton(6)}
+                        {this.renderDraftBoardButton(0)}
+                        {this.renderDraftBoardButton(1)}
+                        {this.renderDraftBoardButton(2)}
+                        {this.renderDraftBoardButton(3)}
+                        {this.renderDraftBoardButton(4)}
+                        {this.renderDraftBoardButton(5)}
+                        {this.renderDraftBoardButton(6)}
                     </div>
                     <div className="draft-board-row"> 
-                    {this.renderDraftBoardButton(7)}
-                    {this.renderDraftBoardButton(8)}
-                    {this.renderDraftBoardButton(9)}
-                    {this.renderDraftBoardButton(10)}
-                    {this.renderDraftBoardButton(11)}
-                    {this.renderDraftBoardButton(12)}
-                    {this.renderDraftBoardButton(13)}
+                        {this.renderDraftBoardButton(7)}
+                        {this.renderDraftBoardButton(8)}
+                        {this.renderDraftBoardButton(9)}
+                        {this.renderDraftBoardButton(10)}
+                        {this.renderDraftBoardButton(11)}
+                        {this.renderDraftBoardButton(12)}
+                        {this.renderDraftBoardButton(13)}
                     </div>
                     <div className="draft-board-row"> 
-                    {this.renderDraftBoardButton(14)}
-                    {this.renderDraftBoardButton(15)}
-                    {this.renderDraftBoardButton(16)}
-                    {this.renderDraftBoardButton(17)}
-                    {this.renderDraftBoardButton(18)}
-                    {this.renderDraftBoardButton(19)}
-                    {this.renderDraftBoardButton(20)}
+                        {this.renderDraftBoardButton(14)}
+                        {this.renderDraftBoardButton(15)}
+                        {this.renderDraftBoardButton(16)}
+                        {this.renderDraftBoardButton(17)}
+                        {this.renderDraftBoardButton(18)}
+                        {this.renderDraftBoardButton(19)}
+                        {this.renderDraftBoardButton(20)}
                     </div>
                     <div className="draft-board-row"> 
-                    {this.renderDraftBoardButton(21)}
-                    {this.renderDraftBoardButton(22)}
-                    {this.renderDraftBoardButton(23)}
-                    {this.renderDraftBoardButton(24)}
-                    {this.renderDraftBoardButton(25)}
-                    {this.renderDraftBoardButton(26)}
-                    {this.renderDraftBoardButton(27)}
+                        {this.renderDraftBoardButton(21)}
+                        {this.renderDraftBoardButton(22)}
+                        {this.renderDraftBoardButton(23)}
+                        {this.renderDraftBoardButton(24)}
+                        {this.renderDraftBoardButton(25)}
+                        {this.renderDraftBoardButton(26)}
+                        {this.renderDraftBoardButton(27)}
                     </div>
                     <div className="draft-board-row"> 
-                    {this.renderDraftBoardButton(28)}
-                    {this.renderDraftBoardButton(29)}
-                    {this.renderDraftBoardButton(30)}
-                    {this.renderDraftBoardButton(31)}
-                    {this.renderDraftBoardButton(32)}
-                    {this.renderDraftBoardButton(33)}
-                    {this.renderDraftBoardButton(34)}
-                    </div>
+                        {this.renderDraftBoardButton(28)}
+                        {this.renderDraftBoardButton(29)}
+                        {this.renderDraftBoardButton(30)}
+                        {this.renderDraftBoardButton(31)}
+                        {this.renderDraftBoardButton(32)}
+                        {this.renderDraftBoardButton(33)}
+                        {this.renderDraftBoardButton(34)}
+                    </div>  
                 </div>
 
+                <div className="pick-board">  
+                    <PickCivButton 
+                        name={this.state.civPick}
+                        onClick = {() => this.handleCivPickClick()}
+                    />
+                </div>
             </div>
         );
     }
