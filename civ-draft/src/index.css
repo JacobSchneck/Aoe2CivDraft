@@ -75,6 +75,27 @@ body {
       width: 220px;
   }
 
+  .off-button:active {
+    background-color: tan ;
+    transform: translateY(4px);
+  }
+
+  .on-button:active {
+    background-color: tan ;
+    transform: translateY(4px);
+  }
+
+  .draft-button:active {
+    background-color: tan ;
+    transform: translateY(4px);
+  }
+
+  .pick-civ-button:active {
+    background-color: tan ;
+    transform: translateY(4px);
+  }
+
+
   .off-button:focus {
     outline: none;
   }
@@ -104,4 +125,8 @@ body {
     top: 75%;
     left: 48%;
     transform: translate(-50%, -50%)
+  }
+
+  :root {
+      background: rgb(197, 189, 179);
   }
